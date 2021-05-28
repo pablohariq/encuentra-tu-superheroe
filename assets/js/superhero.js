@@ -57,7 +57,7 @@ function encontrarSuperHero(){
                     title:{
                         text: `Estadísticas de poder para ${nombre}`,
                         fontFamily: "Yanone Kaffeesatz",
-                        fontSize: 36
+                        fontSize: 34
 
                     },
                     axisY: {
