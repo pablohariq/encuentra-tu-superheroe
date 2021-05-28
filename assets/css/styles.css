@@ -1,0 +1,6 @@
+#logo-principal{
+    background: url(../img/sh1.jpg);
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
