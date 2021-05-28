@@ -106,6 +106,6 @@ btnBuscar.click(()=>{
 
 btnRandom.click(()=>{
     let rand = Math.floor(Math.random()*732) + 1;
-    console.log(rand)
     input.val(rand)
+    btnBuscar.click()
 })
