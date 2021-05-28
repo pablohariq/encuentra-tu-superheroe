@@ -8,38 +8,46 @@
     <title>Encuentra tu SuperHero</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+
+
 
 </head>
 <body>
 <nav class="navbar navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1"><img src="assets/img/sh2.jpg" height="50px" alt="">SuperHero</span>
+    <span class="navbar-brand mb-0 spantext"><img class="mx-2" src="assets/img/sh2.jpg" height="50px" alt="">SuperHero</span>
 </nav>
 
-<div class="container">
-    <div id="logo-principal"></div>
+<div class="container text-center">
+    <div class="my-4" id="logo-principal"></div>
     <h1>Encuentra tu SuperHero</h1>
-    <!-- <h3 class="my-2">Ingresa el número del SuperHero a buscar:</h3> -->
     <input 
         type="number" 
         class="form-control" 
         placeholder="Ingresa el número del SuperHero a buscar"
         min="1"
     >
-    <button class="btn btn-danger my-1">Buscar</button>
+
+    <button id="btn-buscar" class="btn btn-danger my-1">Buscar</button>
+    <button id="btn-random" class="btn btn-muted my-1 rainbow-bg">Random!</button>
+
 </div>
 
 <!-- resultados -->
 <div class="container my-3">
-    <div class="row">
-        <div class="col-8">
+    <div class="row align-items-center">
+        <div class="col-7">
             <div class="card">
                 <div class="row">
                     <div class="col">
-                        <img id="info-img" class="card-img" src="" alt="Card image cap">
+                        <img id="info-img" class="card-img" src="assets/img/placeholder.png" alt="Card image cap">
                     </div>
                     <div class="col">
                         <div class="card-body">
-                            <h4 id="info-nombre" class="card-title">Nombre</h4>
+                            <h3 id="info-nombre" class="card-title">Nombre</h3>
                             <h5 id="info-nombreReal" class="card-title">Nombre Real</h5>
                             <p id="info-conexiones" class="card-text">Conexiones</p>
                             <ul class="list-group list-group-flush">
@@ -56,18 +64,19 @@
                 </div>
             </div>
         </div>
-
-        <div id="" class="col-4">Graph</div>
+        <div id="chartContainer" class="col-5" style="height: 370px; width: 100%;"></div>
     </div>
-
 </div>
 
-
-
+<footer>
+    Pablo Lizama,  2021
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="assets/js/superhero.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="assets/js/bargraph-inicial.js"></script> 
 </body>
 </html>

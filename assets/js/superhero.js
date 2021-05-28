@@ -1,5 +1,6 @@
 //recoger input de usuario
-const boton = $("button");
+const btnBuscar = $("#btn-buscar");
+const btnRandom = $("#btn-random");
 const input = $("input");
 
 function encontrarSuperHero(){
@@ -8,15 +9,15 @@ function encontrarSuperHero(){
         type: 'GET',
         dataType: 'json',
         success: function(data){
-            //verificar si el id no es válido para la API
+            //verificar si el id no posee información en la API
             if (data.response == "error"){
                 alert('ID de SuperHeroe no encontrado')
                 return false
             }
             else{
                 //destructuring data
-                let {url: urlImagen} = data.image
                 let {name: nombre} = data 
+                let {url: urlImagen} = data.image
                 let {publisher: publicado, "first-appearance": debut, alignment: alineamiento, "full-name": nombreReal} = data.biography
                 let {occupation: ocupacion} = data.work
                 let {height: altura, weight: peso} = data.appearance
@@ -29,14 +30,56 @@ function encontrarSuperHero(){
                 $("#info-publicado").html(`<i>Publicado por</i>: ${publicado}`)
                 $("#info-ocupacion").html(`<i>Ocupación</i>: ${ocupacion}`)
                 $("#info-debut").html(`<i>Primera aparición</i>: ${debut}`)
-                $("#info-altura").html(`<i>Altura</i>: ${altura[1]}`)
-                $("#info-peso").html(`<i>Peso</i>: ${peso[1]}`)
-                $("#info-alianzas").html(`<i>Primera aparición</i>: ${debut}`)
-                $("#info-alineamiento").html(`<i>Alineamiento</i>: ${alineamiento}`)
-            }
 
-            console.log(data.response);
-            console.log(input.val())
+                alturahtml = "<i>Altura</i>: " + ((altura[1] == "0 cm")? "-" : altura[1]) //filtro para cuando no hay información de altura
+                $("#info-altura").html(alturahtml)
+
+                pesohtml = "<i>Peso</i>: " + ((peso[1] == "0 kg")? "-" : peso[1]) //filtro para cuando no hay información de altura
+                $("#info-peso").html(pesohtml)
+
+                $("#info-alianzas").html(`<i>Alianzas</i>: ${conexiones}`)
+                $("#info-alineamiento").html(`<i>Alineamiento</i>: ${alineamiento}`)
+
+                //estadisticas de poder
+                let {powerstats} = data;
+                let dataPointsSH = []
+                let powstatsArray = Object.entries(powerstats) //entrega un arreglo con arreglos de la forma ["intelligence","38"]
+                powstatsArray.forEach(([key, value]) => { //argumento es [key,value] porque es la forma que contienen los elementos de powstatsArray
+                    dataPointsSH.push({y: parseInt(value), label: key})
+                })
+                
+                //dibujar canvas a partir del dataPoints
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    exportEnabled: false,
+                    theme: "light1", // "light1", "light2", "dark1", "dark2"
+                    title:{
+                        text: `Estadísticas de poder para ${nombre}`,
+                        fontFamily: "Yanone Kaffeesatz",
+                        fontSize: 36
+
+                    },
+                    axisY: {
+                        includeZero: true
+                    },
+                    axisX: {
+                        labelAngle: -45,
+                        labelFontSize: 16
+                    },
+                    data: [{
+                        type: "column", //change type to bar, line, area, pie, etc
+                        indexLabel: "{y}", //Shows y value on all Data Points
+                        indexLabelFontColor: "#5A5757",
+                        indexLabelFontSize: 16,
+                        indexLabelPlacement: "outside",
+                        dataPoints: dataPointsSH
+                    }]
+                });
+                chart.render();
+
+
+            }
         },
         error: function(error){
             alert("Error de comunicación");
@@ -55,8 +98,14 @@ function validar(input){
 //(pendiente)
 
 
-boton.click(()=>{
+btnBuscar.click(()=>{
     validar(input.val())
     ? encontrarSuperHero()
     : (alert("ID ingresado no válido"),input.val("")) //alerta y borra el input inválido
+})
+
+btnRandom.click(()=>{
+    let rand = Math.floor(Math.random()*732) + 1;
+    console.log(rand)
+    input.val(rand)
 })
