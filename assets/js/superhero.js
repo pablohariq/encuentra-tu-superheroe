@@ -16,15 +16,23 @@ function encontrarSuperHero(){
             else{
                 //destructuring data
                 let {url: urlImagen} = data.image
-                let {name: nombre} = data //destructuring del primer nivel
-                // let {full-name: nombreReal } = data.biography
-                let {publisher: publicado} = data.biography
+                let {name: nombre} = data 
+                let {publisher: publicado, "first-appearance": debut, alignment: alineamiento, "full-name": nombreReal} = data.biography
+                let {occupation: ocupacion} = data.work
+                let {height: altura, weight: peso} = data.appearance
+                let {"group-affiliation": conexiones} = data.connections
 
-                $("#info-nombre").html(nombre);
-                $("info-nombreReal").html(nombreReal)
-                $("#info-publicado").html(`<i>Publicado por</i>: ${publicado}`)
                 $("#info-img").attr('src',`${urlImagen}`)
-                alert('todo bien pa')
+                $("#info-nombre").html(nombre);
+                $("#info-nombreReal").html(`<i>Nombre real: </i>${nombreReal}`)
+                $("#info-conexiones").html(`<i>Conexiones: </i>${nombreReal}`)
+                $("#info-publicado").html(`<i>Publicado por</i>: ${publicado}`)
+                $("#info-ocupacion").html(`<i>Ocupación</i>: ${ocupacion}`)
+                $("#info-debut").html(`<i>Primera aparición</i>: ${debut}`)
+                $("#info-altura").html(`<i>Altura</i>: ${altura[1]}`)
+                $("#info-peso").html(`<i>Peso</i>: ${peso[1]}`)
+                $("#info-alianzas").html(`<i>Primera aparición</i>: ${debut}`)
+                $("#info-alineamiento").html(`<i>Alineamiento</i>: ${alineamiento}`)
             }
 
             console.log(data.response);
