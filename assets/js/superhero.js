@@ -109,3 +109,10 @@ btnRandom.click(()=>{
     input.val(rand)
     btnBuscar.click()
 })
+
+input.on("keyup", (e)=>{
+    if (e.keyCode == 13){
+        btnBuscar.click()
+    }
+})
+
