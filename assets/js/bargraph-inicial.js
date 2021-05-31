@@ -11,7 +11,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
     },
 	data: [{
 		type: "pie", //change type to bar, line, area, pie, etc
-		//indexLabel: "{y}", //Shows y value on all Data Points
+		// indexLabel: "{y}", //Shows y value on all Data Points
 		indexLabelFontColor: "#5A5757",
       	indexLabelFontSize: 16,
 		indexLabelPlacement: "outside",
