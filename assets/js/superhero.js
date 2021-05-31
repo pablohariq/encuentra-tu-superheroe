@@ -52,6 +52,7 @@ function encontrarSuperHero(){
 
                 var chart = new CanvasJS.Chart("chartContainer", {
                     animationEnabled: true,
+                    animationDuration: 700,
                     exportEnabled: false,
                     theme: "light1", // "light1", "light2", "dark1", "dark2"
                     title:{
